@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 env:
-  JFROG_PROJECT_KEY: "td"
+  JFROG_PROJECT_KEY: "cocoamaemaeaws"
   MVN_BUILD_NAME: "maven-spring-petclinic"
   DOCKER_BUILD_NAME: "docker-spring-petclinic"
   MVN_REPO_PREFIX: "backend-maven"
@@ -29,11 +29,10 @@ jobs:
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
         env:
-          JF_URL: https://soleng.jfrog.io 
+          JF_URL: https://cocoamaemaeaws.jfrog.io 
         with:
-          oidc-provider-name: tomokim-github-actions-integration 
-          oidc-audience: tomokim-github-actions-integration
-          version: latest  # 明示的に最新を指定
+          oidc-provider-name: cocoamaemaeaws-github-provider 
+          oidc-audience: cocoamaemaeaws-github-audience
     
       - name: Set up JDK ${{matrix.java}}
         uses: actions/setup-java@v4
@@ -120,8 +119,8 @@ jobs:
           echo "Using Virtual Repo: $DOCKER_VIRTUAL_REPO"
 
           # Build and push Docker image to local repo
-          JF_DOMAIN=soleng.jfrog.io
-          IMAGE_NAME="${JF_DOMAIN}/${DOCKER_VIRTUAL_REPO}/spring-petclinic:${{ github.run_number }}"
+          JF_DOMAIN=cocoamaemaeaws.jfrog.io
+          IMAGE_NAME="${JF_DOMAIfN}/${DOCKER_VIRTUAL_REPO}/spring-petclinic:${{ github.run_number }}"
           echo "docker Image name : $IMAGE_NAME"
           JF_BASE_IMAGE="${JF_DOMAIN}/${DOCKER_VIRTUAL_REPO}/eclipse-temurin:17-jdk-focal"
           echo "Docker base image: $JF_BASE_IMAGE"
