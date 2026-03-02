@@ -79,8 +79,12 @@ jobs:
           # GitHub Actionsがデフォルトで設定している可能性のあるオプションを無効化
           MAVEN_OPTS: ""
         run: |
-          # setup-javaがインストールしたMaven 3.9.8のパスを強制的に優先
-          export M2_HOME=$JAVA_HOME/../../../apache-maven/3.9.8/x64
+          # Maven 3.9.8 をダウンロードして展開
+          wget https://archive.apache.org
+          tar -xzf apache-maven-3.9.8-bin.tar.gz
+          
+          # パスを最優先に設定
+          export M2_HOME=$GITHUB_WORKSPACE/apache-maven-3.9.8
           export PATH=$M2_HOME/bin:$PATH
           
           # debug
