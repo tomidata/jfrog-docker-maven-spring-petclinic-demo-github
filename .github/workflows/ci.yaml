@@ -80,8 +80,9 @@ jobs:
           MAVEN_OPTS: ""
         run: |
           # Download Maven 3.9.8 binary directly
-          curl -L https://archive.apache.org -o maven.tar.gz
+          curl -fL https://archive.apache.org -o maven.tar.gz
           tar -xzf maven.tar.gz
+          
           
           # Get the absolute path of the extracted folder
           export M2_HOME=$GITHUB_WORKSPACE/apache-maven-3.9.8
