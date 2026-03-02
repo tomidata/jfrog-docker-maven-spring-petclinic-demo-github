@@ -40,8 +40,6 @@ jobs:
           java-version: 21
           distribution: 'temurin'
           cache: maven
-          # mvn-version: '3.9.12'
-          mvn-version: '3.8.8'
 
       - name: Set environment variables based on branch
         run: |
@@ -78,13 +76,15 @@ jobs:
       - name: Configure Maven to use Artifactory virtual repository based on branch and run tests, build and deploy
         env:
           # GitHub Actionsがデフォルトで設定している可能性のあるオプションを無効化
-          #MAVEN_OPTS: ""
           MAVEN_OPTS: "-Dmaven.multiModuleProjectDirectory=$GITHUB_WORKSPACE"
+          # JFrog CLIにシステム標準のmvnではなく、プロジェクトのmvnwを使わせる設定
+          JF_MVN_PATH: "./mvnw"
         run: |
           #.jfrog directory
           rm -rf .jfrog
           # debug
-          mvn -version
+          chmod +x mvnw
+          ./mvnw -version
 
           # Configure artifactory repositories based on env
           MVN_VIRTUAL_REPO="${{ env.JFROG_PROJECT_KEY }}-${{ env.MVN_REPO_PREFIX }}-${{ env.REPO_ENV }}-virtual"
