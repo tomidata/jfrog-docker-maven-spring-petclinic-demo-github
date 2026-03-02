@@ -40,7 +40,7 @@ jobs:
           java-version: 21
           distribution: 'temurin'
           cache: maven
-          mvn-version: '3.9.8'
+          # mvn-version: '3.9.12'
 
       - name: Set environment variables based on branch
         run: |
@@ -79,15 +79,6 @@ jobs:
           # GitHub Actionsがデフォルトで設定している可能性のあるオプションを無効化
           MAVEN_OPTS: ""
         run: |
-          # Download Maven 3.9.8 binary directly
-          curl -fL https://archive.apache.org -o maven.tar.gz
-          tar -xzf maven.tar.gz
-          
-          
-          # Get the absolute path of the extracted folder
-          export M2_HOME=$GITHUB_WORKSPACE/apache-maven-3.9.8
-          export PATH=$M2_HOME/bin:$PATH
-          
           # debug
           mvn -version
 
