@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 env:
-  JFROG_PROJECT_KEY: "tomidata"
+  JFROG_PROJECT_KEY: "tomita"
   MVN_BUILD_NAME: "maven-spring-petclinic"
   DOCKER_BUILD_NAME: "docker-spring-petclinic"
   MVN_REPO_PREFIX: "backend-maven"
@@ -31,7 +31,7 @@ jobs:
         env:
           JF_URL: https://cocoamaemaeaws.jfrog.io 
         with:
-          oidc-provider-name: tomita-github-provider 
+          oidc-provider-name: tomita-github-provider
           oidc-audience: tomita-github-audience
 
       - name: Set up JDK 21
