@@ -1,3 +1,4 @@
+set Default Deployment Repository
 test comment5
 test comment4
 test comment3
@@ -43,6 +44,7 @@ docker run --name spring-petclinic -p 8080:8080 -d ${JFROG_DOMAIN}/${JFROG_DOCKE
 After running the docker container successfully, access [http://localhost:8080/](http://localhost:8080/) The same UI as above is displayed.
 
 # jfrog-docker-maven-spring-petclinic-demo-github
+
 
 
 
